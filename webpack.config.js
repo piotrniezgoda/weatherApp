@@ -1,17 +1,13 @@
-const GoogleFontsPlugin = require("google-fonts-webpack-plugin")
-
 module.exports = {
-  "entry": "index.js",
+  entry: './index.js',
   /* ... */
   plugins: [
     new GoogleFontsPlugin({
       fonts: [
-          { family: "Sintony", variants: [ "400", "700" ] },
-          { family: "Indie Flower" },
-      ];
-      path: "/assets/fonts",
-      filename: "/assets/fonts/fonts.css"
-    })
+        { family: "Sintony", variants: [ "400", "700" ] },
+        { family: "Indie Flower" },
+      ],
+    }),
   ],
   devServer: {
     disableHostCheck: true,

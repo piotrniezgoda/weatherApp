@@ -16,5 +16,9 @@ export default {
 
 
 <style lang="scss">
+  @import url('https://fonts.googleapis.com/css?family=Dancing+Script|Sintony:400,700&subset=latin-ext');
 
+  body, html {
+    font-family: 'Sintony', sans-serif;
+  }
 </style>

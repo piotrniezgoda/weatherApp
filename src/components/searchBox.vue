@@ -2,9 +2,9 @@
 <div class="main-container">
   <h2 class="main-title">Check the weather in...</h2>
   <form class="searchForm" action="#">
-    <input placeholder="City" class="searchForm__input" id="searchBox" type="text" required>
+    <input placeholder="City" class="searchForm__input" id="searchBox" type="text" required v-model="inputValue">
     <label class="searchForm__label" for="searchBox">City</label>
-    <button class="searchForm__btn" type="submit">Search</button>
+    <router-link v-bind:inputValue="inputValue" v-if="inputValue != ''" :to="{name: 'weather', params: {inputValue} }" class="searchForm__btn" type="submit" v-on:click="getherData"><img src="../assets/searchBtn.svg" alt="search button"></router-link>
   </form>
 </div>
 </template>
@@ -12,13 +12,30 @@
 <script>
 export default {
   name: 'searchBox',
+
+  data() {
+    return {
+      inputValue: '',
+    }
+  },
+
+  props: {
+
+  },
+  methods: {
+    getherData(e) {
+      e.preventDefault;
+
+    },
+  }
+
 }
 </script>
 
 <style lang="scss">
 
   .main-container {
-    margin: 21rem auto 0 auto;
+    margin: 19rem auto 0 auto;
     text-align: center;
   }
 
@@ -93,19 +110,20 @@ export default {
     .searchForm__btn {
       background: transparent;
       border: none;
-      background: url('../assets/searchBtn.svg');
-      background-size: cover;
-      background-repeat: no-repeat;
-      text-indent: -9999px;
       width: 1.4rem;
       height: 2rem;
       cursor: pointer;
       margin: 0 0 0 1.1rem;
       transition: 250ms ease;
+      position: absolute;
 
       &:hover, &:focus {
         transform: scale(1.3);
         transition: 250ms ease;
+      }
+
+      >img {
+        width: 1.4rem;
       }
     }
   }

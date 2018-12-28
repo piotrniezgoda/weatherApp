@@ -14,7 +14,7 @@ export default {
 
 <style lang="scss" scoped>
   .home-header-container {
-    width: 34.75rem;
+    width: 37.75rem;
     margin: 0 auto;
   }
 
@@ -30,9 +30,10 @@ export default {
   }
 
   .home__sub {
-    font-family: 'Indie Flower';
+    font-family: 'Dancing Script', cursive;
     font-size: 2.12rem;
     color: #fff;
     text-align: right;
   }
 </style>
+
