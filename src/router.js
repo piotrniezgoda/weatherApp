@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Home from './views/Home.vue';
 import weather from './views/SearchResoult.vue';
+import nothingFound from './views/ErrorPage.vue';
 
 Vue.use(Router);
 
@@ -27,6 +28,11 @@ export default new Router({
       name: 'weather',
       component: weather,
       props: true,
+    },
+    {
+      path: '/nothingFound',
+      name: 'nothingFound',
+      component: nothingFound,
     },
   ],
 });

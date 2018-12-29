@@ -4,7 +4,10 @@
   <form class="searchForm" action="#">
     <input placeholder="City" class="searchForm__input" id="searchBox" type="text" required v-model="inputValue">
     <label class="searchForm__label" for="searchBox">City</label>
-    <router-link v-bind:inputValue="inputValue" v-if="inputValue != ''" :to="{name: 'weather', params: {inputValue} }" class="searchForm__btn" type="submit" v-on:click="getherData"><img src="../assets/searchBtn.svg" alt="search button"></router-link>
+    <transition>
+      <router-link v-if="inputValue != ''" :to="{name: 'weather', params: {inputValue} }" class="searchForm__btn"><img src="../assets/searchBtn.svg" alt="search button"></router-link>
+    </transition>
+
   </form>
 </div>
 </template>
@@ -23,10 +26,7 @@ export default {
 
   },
   methods: {
-    getherData(e) {
-      e.preventDefault;
 
-    },
   }
 
 }

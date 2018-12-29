@@ -2,27 +2,36 @@
   <div class="container">
     <div class="content-wrapper">
       <div class="basicInfo">
-        <h1 class="basicInfo__cityName">{{ inputValue }} <span class="basicInfo__city-country">PL</span></h1>
-        <p class="basicInfo__city-temperature">-5&deg;C</p>
+        <h1 v-if="step === 2" class="basicInfo__cityName">{{ APIresoult.name }} <span class="basicInfo__city-country">{{ APIresoult.sys.country }}</span></h1>
+        <p v-if="step === 2" class="basicInfo__city-temperature">{{ TemptoCelcious() }}&deg;C</p>
       </div>
       <div class="statusInfo">
         <p class="statusInfo__status statusInfo__status--title">Current Weather</p>
-        <p id="js-time" class="statusInfo__status statusInfo__status--time">{{ time }}</p>
+        <p id="js-time" class="statusInfo__status statusInfo__status--time">{{ time }}<!-- use dt for timezone --></p>
       </div>
+      <weatherInfoGrid v-bind:resoult="APIresoult" v-if="step === 2"></weatherInfoGrid>
     </div>
+
     <backBtn></backBtn>
   </div>
 </template>
 
 <script>
+import axios from 'axios';
 import backBtn from '@/components/backButton';
+import weatherInfoGrid from '@/components/weatherInfoGrid';
+const API = 'api.openweathermap.org/data/2.5/weather';
+const APIkey = '145367447ab3057720ebbc55b322f573';
 const moment = require('moment');
+
 export default {
   name: 'SearchResoult',
   props: ['inputValue'],
   data() {
     return {
       time: '',
+      APIresoult: [],
+      step: 1,
     }
   },
   methods: {
@@ -31,14 +40,33 @@ export default {
         this.time = moment().format("h:m A");
         setTimeout(self.showTime, 1000)
     },
+    TemptoCelcious() {
+      const kalvinTemp = this.APIresoult.main.temp;
+      const zeroKelvin = -273.15;
+      const celciousTemp = kalvinTemp - (-zeroKelvin);
+      return celciousTemp.toFixed(0);
+    }
     },
     mounted: function () {
       this.showTime();
     },
     components: {
       backBtn,
+      weatherInfoGrid,
+    },
+    created() {
+        axios.get(`https://${API}?q=${this.inputValue}&APPID=${APIkey}`)
+      .then((response) => {
+        this.APIresoult = response.data;
+        console.log(this.APIresoult);
+        this.step = 2;
+      })
+      .catch((error) => {
+        this.$router.push('nothingFound');
+      })
     },
   }
+
 </script>
 
 <style lang="scss" scoped>
