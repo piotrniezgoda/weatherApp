@@ -3,14 +3,19 @@
     <div class="content-wrapper">
       <transition name="fade">
         <div v-if="isloaded" class="basicInfo">
-          <h1 class="basicInfo__cityName">{{ APIresoult.name }} <span class="basicInfo__city-country">{{ APIresoult.sys.country }}</span></h1>
+          <h1 class="basicInfo__cityName">
+            {{ APIresoult.name }} <span class="basicInfo__city-country">
+             {{ APIresoult.sys.country }}</span>
+          </h1>
           <p class="basicInfo__city-temperature">{{ TemptoCelcious() }}&deg;C</p>
         </div>
       </transition>
       <transition name="slide-fade">
         <div v-if="isloaded" class="statusInfo">
           <p class="statusInfo__status statusInfo__status--title">Last weather update</p>
-          <p id="js-time" class="statusInfo__status statusInfo__status--time">{{ lastUpdateTime() }}</p>
+          <p id="js-time" class="statusInfo__status statusInfo__status--time">
+          {{ lastUpdateTime() }}
+          </p>
         </div>
       </transition>
       <transition name="slide-fade">
@@ -26,8 +31,9 @@
 
 <script>
 import axios from 'axios';
-import backBtn from '@/components/backButton';
-import weatherInfoGrid from '@/components/weatherInfoGrid';
+import backBtn from '@/components/backButton.vue';
+import weatherInfoGrid from '@/components/weatherInfoGrid.vue';
+
 const API = 'api.openweathermap.org/data/2.5/weather';
 const APIkey = '145367447ab3057720ebbc55b322f573';
 const moment = require('moment');
@@ -40,7 +46,7 @@ export default {
       APIresoult: [],
       loading: false,
       isloaded: false,
-    }
+    };
   },
   methods: {
     TemptoCelcious() {
@@ -54,25 +60,25 @@ export default {
       const lastUpdate = moment.unix(unixTime);
       return lastUpdate.format('h:mm A');
     },
-    },
-    components: {
-      backBtn,
-      weatherInfoGrid,
-    },
-    created() {
-      this.loading = true;
-      this.isloaded = false;
-      axios.get(`https://${API}?q=${this.inputValue}&APPID=${APIkey}`)
+  },
+  components: {
+    backBtn,
+    weatherInfoGrid,
+  },
+  created() {
+    this.loading = true;
+    this.isloaded = false;
+    axios.get(`https://${API}?q=${this.inputValue}&APPID=${APIkey}`)
       .then((response) => {
         this.APIresoult = response.data;
         this.loading = false;
         this.isloaded = true;
       })
-      .catch((error) => {
+      .catch(() => {
         this.$router.push('nothingFound');
-      })
-    },
-  }
+      });
+  },
+};
 
 </script>
 

@@ -8,7 +8,7 @@
 <script>
 export default {
   name: 'backButton',
-}
+};
 </script>
 
 <style lang="scss" scoped>

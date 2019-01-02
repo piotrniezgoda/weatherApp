@@ -8,8 +8,8 @@
 
 <script>
 export default {
- name: 'homeHeader',
-}
+  name: 'homeHeader',
+};
 </script>
 
 <style lang="scss" scoped>
@@ -56,4 +56,3 @@ export default {
     }
   }
 </style>
-

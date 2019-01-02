@@ -21,7 +21,7 @@ export default {
   data() {
     return {
       inputValue: '',
-    }
+    };
   },
 
   props: {
@@ -30,12 +30,13 @@ export default {
   methods: {
     searchEnterTrigger(e) {
       e.preventDefault();
+      // eslint-disable-next-line
       const inputValue = this.inputValue;
       this.$router.push({ name: 'weather', params: { inputValue } });
     },
-  }
+  },
 
-}
+};
 </script>
 
 <style lang="scss">

@@ -16,22 +16,23 @@
 </template>
 
 <script>
-import backBtn from '@/components/backButton'
+import backBtn from '@/components/backButton.vue';
+
 export default {
   name: 'ErrorPage',
   data() {
     return {
       siteloaded: false,
-    }
+    };
   },
   components: {
     backBtn,
   },
   mounted() {
     this.siteloaded = true;
-  }
+  },
 
-}
+};
 </script>
 
 <style lang="scss" scoped>

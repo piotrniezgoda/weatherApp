@@ -21,22 +21,23 @@
 
 
 <script>
-import backBtn from '@/components/backButton';
+import backBtn from '@/components/backButton.vue';
+
 export default {
   name: 'About',
   data() {
     return {
       siteloaded: false,
-    }
+    };
   },
   components: {
     backBtn,
   },
   mounted() {
     this.siteloaded = true;
-  }
+  },
 
-}
+};
 </script>
 
 <style lang="scss">
@@ -95,4 +96,3 @@ export default {
   opacity: 0;
 }
 </style>
-

@@ -22,9 +22,9 @@
 
 <script>
 import startBg from '@/components/startBg.vue';
-import Appfooter from '@/components/Appfooter';
-import homeHeader from '@/components/homeHeader';
-import searchBox from '@/components/searchBox';
+import Appfooter from '@/components/Appfooter.vue';
+import homeHeader from '@/components/homeHeader.vue';
+import searchBox from '@/components/searchBox.vue';
 
 export default {
   name: 'home',
@@ -37,11 +37,11 @@ export default {
   data() {
     return {
       siteloaded: false,
-    }
+    };
   },
   mounted() {
     this.siteloaded = true;
-  }
+  },
 };
 </script>
 

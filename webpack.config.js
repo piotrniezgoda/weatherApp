@@ -4,12 +4,12 @@ module.exports = {
   plugins: [
     new GoogleFontsPlugin({
       fonts: [
-        { family: "Sintony", variants: [ "400", "700" ] },
-        { family: "Indie Flower" },
+        { family: 'Sintony', variants: ['400', '700'] },
+        { family: 'Indie Flower' },
       ],
     }),
   ],
   devServer: {
     disableHostCheck: true,
-  }
+  },
 };

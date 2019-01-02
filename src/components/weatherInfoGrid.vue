@@ -2,8 +2,9 @@
   <div class="resoult-grid">
     <div class="resoult-box resoult--temperature">
       <div class="resoult-box-iconwrapper">
-        <img v-bind:src="require('../assets/' + resoult.weather[0].icon + '.svg')" alt="weather icon">
-        <p class="resoult-box-info resoult-box-info--weather"> {{ resoult.weather[0].description }}</p>
+        <img v-bind:src="require('../assets/' + resoult.weather[0].icon + '.svg')"
+        alt="weather icon">
+        <p class="resoult-box-info resoult-box-info--weather">{{ resoult.weather[0].description }}</p>
       </div>
 
       <div class="temp-group">
@@ -51,13 +52,14 @@
 
 <script>
 const moment = require('moment');
+
 export default {
   name: 'weatherInfoGrid',
   props: ['resoult'],
   data() {
     return {
 
-    }
+    };
   },
   methods: {
     TemptoCelcious() {
@@ -81,8 +83,8 @@ export default {
       const time = moment.unix(unixSunset);
       return `Sunset: ${time.format('h:mm A')}`;
     },
-  }
-}
+  },
+};
 </script>
 
 <style lang="scss" scoped>
