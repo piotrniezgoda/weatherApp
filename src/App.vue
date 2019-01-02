@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-<router-view/>
+      <router-view/>
   </div>
 </template>
 
@@ -20,5 +20,8 @@ export default {
 
   body, html {
     font-family: 'Sintony', sans-serif;
+    @media (max-width: 543px) {
+      font-size: 0.9rem;
+    }
   }
 </style>

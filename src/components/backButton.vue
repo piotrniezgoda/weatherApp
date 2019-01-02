@@ -19,12 +19,19 @@ export default {
     border-radius: 20px;
     border: 1px solid #fff;
     font-size: 1.1rem;
+
+    &:hover, &:focus {
+      background: #e05165;
+      border: 1px solid #e05165;
+      outline: none;
+    }
   }
 
   .backBtn-container {
     text-align: center;
     position: absolute;
-    bottom: 4rem;
+    bottom: 0;
+    padding: 1.8rem 0;
     left: 50%;
     transform: translateX(-50%);
   }

@@ -1,14 +1,16 @@
 <template>
   <div class="error-container">
-    <div class="content-container">
-      <h1 class="error-title">We're sorry, we didn't find this city</h1>
-      <div class="error-icon">
-        <img src="../assets/error-icon.svg" alt="error icon">
+    <transition name="fade">
+      <div v-if="siteloaded" class="content-container">
+        <h1 class="error-title">Sorry, we did not find this city</h1>
+        <div class="error-icon">
+          <img src="../assets/error-icon.svg" alt="error icon">
+        </div>
+        <p class="error-text-info">Please check if You have entered city name correctly</p>
+        <p class="error-text-info">if the city name is correct, then probably this city doesn't exist in our database</p>
+        <p class="error-text-info">You can check out another city in your area</p>
       </div>
-      <p class="error-text-info">Please check if You have entered city name correctly</p>
-      <p class="error-text-info">if the city name is correct, then probably this city doesn't exist in our database</p>
-      <p class="error-text-info">You can check out another city in your area</p>
-    </div>
+    </transition>
     <backBtn></backBtn>
   </div>
 </template>
@@ -17,8 +19,16 @@
 import backBtn from '@/components/backButton'
 export default {
   name: 'ErrorPage',
+  data() {
+    return {
+      siteloaded: false,
+    }
+  },
   components: {
     backBtn,
+  },
+  mounted() {
+    this.siteloaded = true;
   }
 
 }
@@ -54,4 +64,11 @@ export default {
     color: #fff;
     margin: 0.5rem 0;
   }
+
+  .fade-enter-active, .fade-leave-active {
+  transition: opacity 1s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
 </style>

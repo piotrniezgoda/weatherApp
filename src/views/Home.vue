@@ -1,10 +1,15 @@
 <template>
   <div class="home">
     <header class="home-header">
-      <homeHeader></homeHeader>
+      <transition name="slide-fade">
+        <homeHeader v-if="siteloaded"></homeHeader>
+      </transition>
     </header>
+
     <main class="home-main">
-      <searchBox></searchBox>
+      <transition name="fade">
+        <searchBox v-if="siteloaded"></searchBox>
+      </transition>
     </main>
 
     <footer class="home-footer">
@@ -16,7 +21,6 @@
 </template>
 
 <script>
-// @ is an alias to /src
 import startBg from '@/components/startBg.vue';
 import Appfooter from '@/components/Appfooter';
 import homeHeader from '@/components/homeHeader';
@@ -30,17 +34,30 @@ export default {
     homeHeader,
     searchBox,
   },
+  data() {
+    return {
+      siteloaded: false,
+    }
+  },
+  mounted() {
+    this.siteloaded = true;
+  }
 };
 </script>
 
 <style lang="scss" scoped>
   .home {
-    height: 100vh;
+    min-height: 100vh;
     position: relative;
+    overflow: hidden;
   }
 
   .home-header {
     padding: 18.75rem 0 0 0;
+
+    @media(max-width: 500px) {
+      padding: 9.75rem 0 0 0;
+    }
   }
 
   .home-footer {
@@ -50,4 +67,23 @@ export default {
     width: 100%;
     padding: 1rem 4rem;
   }
+
+  .slide-fade-enter-active {
+  transition: all 1s ease;
+}
+.slide-fade-leave-active {
+  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translateX(100px);
+  opacity: 0;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 1s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
 </style>

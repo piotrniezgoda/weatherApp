@@ -14,8 +14,16 @@ export default {
 
 <style lang="scss" scoped>
   .home-header-container {
-    width: 37.75rem;
+    max-width: 37.75rem;
     margin: 0 auto;
+
+    @media(max-width: 860px) {
+      margin: 0
+    }
+
+    @media(max-width: 668px) {
+      padding: 0 1rem;
+    }
   }
 
   .home__title {
@@ -23,6 +31,14 @@ export default {
     color: #fff;
     text-align: right;
     line-height: 4rem;
+    @media(max-width: 860px) {
+      font-size: 2rem
+    }
+
+    @media(max-width: 508px) {
+      font-size: 1.8rem;
+      text-align: center;
+    }
   }
 
   .yellowText {
@@ -34,6 +50,10 @@ export default {
     font-size: 2.12rem;
     color: #fff;
     text-align: right;
+
+    @media(max-width: 508px) {
+      text-align: center;
+    }
   }
 </style>
 

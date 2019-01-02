@@ -1,14 +1,16 @@
 <template>
 <div class="main-container">
   <h2 class="main-title">Check the weather in...</h2>
-  <form class="searchForm" action="#">
-    <input placeholder="City" class="searchForm__input" id="searchBox" type="text" required v-model="inputValue">
+  <div class="searchForm">
+    <input placeholder="City" class="searchForm__input" id="searchBox" type="text" @keyup.enter="searchEnterTrigger" required v-model="inputValue">
     <label class="searchForm__label" for="searchBox">City</label>
     <transition>
-      <router-link v-if="inputValue != ''" :to="{name: 'weather', params: {inputValue} }" class="searchForm__btn"><img src="../assets/searchBtn.svg" alt="search button"></router-link>
+      <router-link :to="{name: 'weather', params: {inputValue}}" v-if="inputValue != ''" class="searchForm__btn">
+        <img src="../assets/searchBtn.svg" alt="search button">
+      </router-link>
     </transition>
 
-  </form>
+  </div>
 </div>
 </template>
 
@@ -26,7 +28,11 @@ export default {
 
   },
   methods: {
-
+    searchEnterTrigger(e) {
+      e.preventDefault();
+      const inputValue = this.inputValue;
+      this.$router.push({ name: 'weather', params: { inputValue } });
+    },
   }
 
 }
@@ -37,6 +43,10 @@ export default {
   .main-container {
     margin: 19rem auto 0 auto;
     text-align: center;
+
+    @media(max-width: 460px) and (max-height:720px) {
+      margin: 8rem auto 0 auto;
+    }
   }
 
   .main-title {
@@ -48,6 +58,7 @@ export default {
 
   .searchForm {
     position: relative;
+    display: inline-block;
 
     &__label {
       transition: opacity 250ms ease, top 250ms ease;
@@ -87,7 +98,7 @@ export default {
 
         & + .searchForm__label {
           opacity: 1;
-          top: 2rem;
+          left: -2rem;
         }
       }
 
@@ -100,7 +111,7 @@ export default {
 
         & + .searchForm__label {
           opacity: 1;
-          top: 2rem;
+          left: -2rem;
         }
       }
 

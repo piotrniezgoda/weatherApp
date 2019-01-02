@@ -50,6 +50,7 @@
 </template>
 
 <script>
+const moment = require('moment');
 export default {
   name: 'weatherInfoGrid',
   props: ['resoult'],
@@ -71,12 +72,14 @@ export default {
       return kilometers.toFixed(0);
     },
     sunriseCalc() {
-      const date = new Date(this.resoult.sys.sunrise * 1000);
-      return `Sunrise: ${date.getHours()}:${date.getMinutes()}`
+      const unixSunrise = this.resoult.sys.sunrise;
+      const time = moment.unix(unixSunrise);
+      return `Sunrise: ${time.format('h:mm A')}`;
     },
     sunsetCalc() {
-      const date = new Date(this.resoult.sys.sunset * 1000);
-      return `Sunset: ${date.getHours()}:${date.getMinutes()}`
+      const unixSunset = this.resoult.sys.sunset;
+      const time = moment.unix(unixSunset);
+      return `Sunset: ${time.format('h:mm A')}`;
     },
   }
 }
@@ -88,6 +91,17 @@ export default {
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
     grid-gap: 2rem;
+
+    @media (max-width: 1060px) {
+      grid-template-columns: 1fr 1fr
+    }
+
+    @media (max-width: 543px) {
+      grid-gap: 0.5rem;
+    }
+    @media (max-width: 450px) {
+      grid-gap: 0.3rem;
+    }
   }
   .resoult--temperature {
     grid-row-start: 1;
@@ -106,6 +120,14 @@ export default {
     background: rgba(255,255,255,0.1);
     border-radius: 20px;
     padding: 1.2rem 5rem 1.2rem 5rem;
+
+    @media (max-width: 750px) {
+      padding: 1.2rem 2rem 1.2rem 2rem ;
+    }
+
+    @media (max-width: 543px) {
+      padding: 1.2rem 1rem 1.2rem 1rem ;
+    }
 
     &-title {
       color: #77C2C7;

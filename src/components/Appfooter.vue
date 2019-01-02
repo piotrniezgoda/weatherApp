@@ -1,8 +1,7 @@
 <template>
     <div class="footer-container">
-      <!-- <router-link to="/">Home</router-link> -->
       <router-link class="footer__link footer-about" to="/about">About App</router-link>
-      <p class="footer__author">Design&Code <a class="footer__link footer__link--author" href="#">Piotr Niezgoda</a></p>
+      <p class="footer__author">Design&Code <a class="footer__link footer__link--author" href="https://piotrniezgoda.github.io/">Piotr Niezgoda</a></p>
     </div>
 </template>
 
@@ -18,24 +17,41 @@ export default {
     justify-content: space-between;
     width: 50%;
     margin: 0 0 0 auto;
+
+    @media(max-width: 712px) {
+      margin: 0;
+      width: 100%;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
   }
 
   .footer__link {
     color: #fff;
     text-decoration: none;
 
-    &--author {
-      color: #E05165;
+    @media(max-width: 712px) {
+      margin: 0 0 1rem 0;
+    }
 
-      &:hover {
+    &:hover {
         text-decoration: underline;
         color: #FCE56E;
       }
+
+    &--author {
+      color: #E05165;
+
     }
   }
 
   .footer-about {
     transform: translateX(-50%);
+
+    @media(max-width: 712px) {
+      transform: none;
+    }
   }
 
   .footer__author {
